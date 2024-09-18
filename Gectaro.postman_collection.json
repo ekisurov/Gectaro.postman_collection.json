@@ -1,0 +1,1846 @@
+{
+	"info": {
+		"_postman_id": "b082c0fe-1fdc-4557-b1b1-dba43103f16d",
+		"name": "Gectaro",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25909756"
+	},
+	"item": [
+		{
+			"name": "1 POST  Создание строки ресурс мат. с валидными данными",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Sutd3idGajEH_dnPMaTwdbFk9cJCIx3a",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"project_task_id\":1514161,\r\n\"project_id\":52473,\r\n\"type\":2,\r\n\"contractor_id\":69119,\r\n\"name\":\"блоки\",\r\n\"volume\":150,\r\n\"unit_measure_id\":124,\r\n\"price\":250,\r\n\"price_with_markup\":46,\r\n\"cost\":600,\r\n\"cost_with_markup\":690,\r\n\"markup\":15,\r\n\"contractor\":{\"id\":69119,\"company_id\":7714,\"name\":\"Поставкин всегда виновашкин\",\"phone\":null,\"email\":null,\"description\":null,\"type\":30,\"contact_person\":\"\",\"post\":\"\",\"web_link\":\"\",\"created_at\":1680882748,\"updated_at\":1680882748,\"group_id\":34229}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.gectaro.com/v1/tasks/1525022/resources?expand=contractor,commentsCount,newCommentsCount,unitMeasure",
+					"protocol": "https",
+					"host": [
+						"api",
+						"gectaro",
+						"com"
+					],
+					"path": [
+						"v1",
+						"tasks",
+						"1525022",
+						"resources"
+					],
+					"query": [
+						{
+							"key": "expand",
+							"value": "contractor,commentsCount,newCommentsCount,unitMeasure"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "25.1 Востановление удалённого ID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "YFWmJBjZJhi8ZN5kMZV1XpqKoDIuv1dU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"id\": 6974577,\r\n        \"project_task_id\": 1514161,\r\n        \"project_id\": 52473,\r\n        \"type\": 1,\r\n        \"contractor_id\": 69119,\r\n        \"number\": 25,\r\n        \"name\": \"Маляр\",\r\n        \"volume\": 10,\r\n        \"write_off\": 0,\r\n         \"price\": 0,\r\n        \"price_with_markup\": 0,\r\n        \"cost\": 0,\r\n        \"cost_with_markup\": 0,\r\n        \"markup\": 0\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.gectaro.com/v1/tasks/1514161/resources?expand=contractor,commentsCount,newCommentsCount,unitMeasure",
+					"protocol": "https",
+					"host": [
+						"api",
+						"gectaro",
+						"com"
+					],
+					"path": [
+						"v1",
+						"tasks",
+						"1514161",
+						"resources"
+					],
+					"query": [
+						{
+							"key": "expand",
+							"value": "contractor,commentsCount,newCommentsCount,unitMeasure"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1.9. Дата создания объекта ??? не поняла как",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "YFWmJBjZJhi8ZN5kMZV1XpqKoDIuv1dU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"timestamp\": 1623969000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.gectaro.com/v1/tasks/1514161/resources/6975831",
+					"protocol": "https",
+					"host": [
+						"api",
+						"gectaro",
+						"com"
+					],
+					"path": [
+						"v1",
+						"tasks",
+						"1514161",
+						"resources",
+						"6975831"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "7 Создание нового ресурса (корректные, некорректные данные в полях)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(422);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "YFWmJBjZJhi8ZN5kMZV1XpqKoDIuv1dU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"project_task_id\":1514161,\r\n\"project_id\":52473,\r\n\"type\":4,\r\n\"contractor_id\":69119,\r\n\"name\":\"БульДозеры\",\r\n\"volume\":10,\r\n\"unit_measure_id\":88,\r\n\"price\":\"цена\",\r\n\"price_with_markup\":4,\r\n\"cost\":600,\r\n\"cost_with_markup\":690,\r\n\"markup\":\"наценка\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.gectaro.com/v1/tasks/1514161/resources?expand=contractor,commentsCount,newCommentsCount,unitMeasure",
+					"protocol": "https",
+					"host": [
+						"api",
+						"gectaro",
+						"com"
+					],
+					"path": [
+						"v1",
+						"tasks",
+						"1514161",
+						"resources"
+					],
+					"query": [
+						{
+							"key": "expand",
+							"value": "contractor,commentsCount,newCommentsCount,unitMeasure"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "8. Пустой JSON",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "YFWmJBjZJhi8ZN5kMZV1XpqKoDIuv1dU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.gectaro.com/v1/tasks/1514161/resources?expand=contractor,commentsCount,newCommentsCount,unitMeasure",
+					"protocol": "https",
+					"host": [
+						"api",
+						"gectaro",
+						"com"
+					],
+					"path": [
+						"v1",
+						"tasks",
+						"1514161",
+						"resources"
+					],
+					"query": [
+						{
+							"key": "expand",
+							"value": "contractor,commentsCount,newCommentsCount,unitMeasure"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2. Создание нового мех ресурса с заполнением только обязательных полей (количество и цена, наценка)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "YFWmJBjZJhi8ZN5kMZV1XpqKoDIuv1dU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"project_task_id\":1514161,\r\n\"project_id\":52473,\r\n\"type\":3,\r\n\"name\":\"Погрузчик\",\r\n\"volume\":2,\r\n\"price\":5000,\r\n\"markup\":15\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.gectaro.com/v1/tasks/1514161/resources?expand=contractor,commentsCount,newCommentsCount,unitMeasure",
+					"protocol": "https",
+					"host": [
+						"api",
+						"gectaro",
+						"com"
+					],
+					"path": [
+						"v1",
+						"tasks",
+						"1514161",
+						"resources"
+					],
+					"query": [
+						{
+							"key": "expand",
+							"value": "contractor,commentsCount,newCommentsCount,unitMeasure"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3. Создание  нового люд ресурса, заполнены не все обязательные поля  (название  и количество)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "YFWmJBjZJhi8ZN5kMZV1XpqKoDIuv1dU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"project_task_id\":1514161,\r\n\"project_id\":52473,\"type\":1,\r\n\"name\":\"Маляр\",\r\n\"volume\":10\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.gectaro.com/v1/tasks/1514161/resources?expand=contractor,commentsCount,newCommentsCount,unitMeasure",
+					"protocol": "https",
+					"host": [
+						"api",
+						"gectaro",
+						"com"
+					],
+					"path": [
+						"v1",
+						"tasks",
+						"1514161",
+						"resources"
+					],
+					"query": [
+						{
+							"key": "expand",
+							"value": "contractor,commentsCount,newCommentsCount,unitMeasure"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4.  Создание  нового  ресурса накл. расходы заполнены о только название",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "YFWmJBjZJhi8ZN5kMZV1XpqKoDIuv1dU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"project_task_id\":1514161,\r\n\"project_id\":52473,\r\n\"type\":5,\r\n\"name\":\"Приобретение оргтехники\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.gectaro.com/v1/tasks/1514161/resources?expand=contractor,commentsCount,newCommentsCount,unitMeasure",
+					"protocol": "https",
+					"host": [
+						"api",
+						"gectaro",
+						"com"
+					],
+					"path": [
+						"v1",
+						"tasks",
+						"1514161",
+						"resources"
+					],
+					"query": [
+						{
+							"key": "expand",
+							"value": "contractor,commentsCount,newCommentsCount,unitMeasure"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5. Не заполнено ни одно поле",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(422);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "YFWmJBjZJhi8ZN5kMZV1XpqKoDIuv1dU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"project_task_id\":1514161,\r\n\"project_id\":52473,\r\n\"type\":5,\r\n\"name\":\"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.gectaro.com/v1/tasks/1514161/resources?expand=contractor,commentsCount,newCommentsCount,unitMeasure",
+					"protocol": "https",
+					"host": [
+						"api",
+						"gectaro",
+						"com"
+					],
+					"path": [
+						"v1",
+						"tasks",
+						"1514161",
+						"resources"
+					],
+					"query": [
+						{
+							"key": "expand",
+							"value": "contractor,commentsCount,newCommentsCount,unitMeasure"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6. Не заполнено ни одно поле, тип ресурса = null",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(422);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "YFWmJBjZJhi8ZN5kMZV1XpqKoDIuv1dU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"project_task_id\":1514161,\r\n\"project_id\":52473,\r\n\"type\":null\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.gectaro.com/v1/tasks/1514161/resources?expand=contractor,commentsCount,newCommentsCount,unitMeasure",
+					"protocol": "https",
+					"host": [
+						"api",
+						"gectaro",
+						"com"
+					],
+					"path": [
+						"v1",
+						"tasks",
+						"1514161",
+						"resources"
+					],
+					"query": [
+						{
+							"key": "expand",
+							"value": "contractor,commentsCount,newCommentsCount,unitMeasure"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "9. Список ресурсов в Работе 9.2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.get(\"variable_key\");\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "YFWmJBjZJhi8ZN5kMZV1XpqKoDIuv1dU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.gectaro.com/v1/tasks/1514161/resources",
+					"protocol": "https",
+					"host": [
+						"api",
+						"gectaro",
+						"com"
+					],
+					"path": [
+						"v1",
+						"tasks",
+						"1514161",
+						"resources"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "10. Получение одного ресурса с валидным id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.get(\"variable_key\");\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "YFWmJBjZJhi8ZN5kMZV1XpqKoDIuv1dU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.gectaro.com/v1/tasks/1514161/resources/6974358",
+					"protocol": "https",
+					"host": [
+						"api",
+						"gectaro",
+						"com"
+					],
+					"path": [
+						"v1",
+						"tasks",
+						"1514161",
+						"resources",
+						"6974358"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "15. Запрос данных по невалидному ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.get(\"variable_key\");\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "YFWmJBjZJhi8ZN5kMZV1XpqKoDIuv1dU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.gectaro.com/v1/tasks/1514161/resources/2222222",
+					"protocol": "https",
+					"host": [
+						"api",
+						"gectaro",
+						"com"
+					],
+					"path": [
+						"v1",
+						"tasks",
+						"1514161",
+						"resources",
+						"2222222"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "14. Запрос данных по несуществующему ID, но в валидном формате",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.get(\"variable_key\");\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "YFWmJBjZJhi8ZN5kMZV1XpqKoDIuv1dU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.gectaro.com/v1/tasks/1514161/resources/6972222",
+					"protocol": "https",
+					"host": [
+						"api",
+						"gectaro",
+						"com"
+					],
+					"path": [
+						"v1",
+						"tasks",
+						"1514161",
+						"resources",
+						"6972222"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "13. Передача параметров с некорректным значением",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "YFWmJBjZJhi8ZN5kMZV1XpqKoDIuv1dU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.gectaro.com/v1/tasks/1514161/resources/",
+					"protocol": "https",
+					"host": [
+						"api",
+						"gectaro",
+						"com"
+					],
+					"path": [
+						"v1",
+						"tasks",
+						"1514161",
+						"resources",
+						""
+					],
+					"query": [
+						{
+							"key": "per-page",
+							"value": "1050",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "11. Получение несуществующего ресурса",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.get(\"variable_key\");\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "YFWmJBjZJhi8ZN5kMZV1XpqKoDIuv1dU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.gectaro.com/v1/tasks/1514161/resources/69",
+					"protocol": "https",
+					"host": [
+						"api",
+						"gectaro",
+						"com"
+					],
+					"path": [
+						"v1",
+						"tasks",
+						"1514161",
+						"resources",
+						"69"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "21. Удаление существующего  ресурса",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "YFWmJBjZJhi8ZN5kMZV1XpqKoDIuv1dU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.gectaro.com/v1/tasks/1514161/resources/6974558",
+					"protocol": "https",
+					"host": [
+						"api",
+						"gectaro",
+						"com"
+					],
+					"path": [
+						"v1",
+						"tasks",
+						"1514161",
+						"resources",
+						"6974558"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "25. Удаление, чтобы после создать такой же",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "YFWmJBjZJhi8ZN5kMZV1XpqKoDIuv1dU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.gectaro.com/v1/tasks/1514161/resources/6974330",
+					"protocol": "https",
+					"host": [
+						"api",
+						"gectaro",
+						"com"
+					],
+					"path": [
+						"v1",
+						"tasks",
+						"1514161",
+						"resources",
+						"6974330"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "22. Удаление уже удалённого ресурса",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "YFWmJBjZJhi8ZN5kMZV1XpqKoDIuv1dU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.gectaro.com/v1/tasks/1514161/resources/6974558",
+					"protocol": "https",
+					"host": [
+						"api",
+						"gectaro",
+						"com"
+					],
+					"path": [
+						"v1",
+						"tasks",
+						"1514161",
+						"resources",
+						"6974558"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "24. Удаление по невалидному id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "YFWmJBjZJhi8ZN5kMZV1XpqKoDIuv1dU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.gectaro.com/v1/tasks/1514161/resources/697_4558",
+					"protocol": "https",
+					"host": [
+						"api",
+						"gectaro",
+						"com"
+					],
+					"path": [
+						"v1",
+						"tasks",
+						"1514161",
+						"resources",
+						"697_4558"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "23. Удаление несуществующего ресурса",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "YFWmJBjZJhi8ZN5kMZV1XpqKoDIuv1dU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.gectaro.com/v1/tasks/1514161/resources/6971111",
+					"protocol": "https",
+					"host": [
+						"api",
+						"gectaro",
+						"com"
+					],
+					"path": [
+						"v1",
+						"tasks",
+						"1514161",
+						"resources",
+						"6971111"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "16 Изменение данных в полях валидные данные",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.get(\"variable_key\");\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "YFWmJBjZJhi8ZN5kMZV1XpqKoDIuv1dU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"id\":6988157,\r\n\"project_task_id\":1514161,\r\n\"project_id\":52473,\r\n\"type\":2,\r\n\"number\":36,\r\n\"name\":\"блоки изменились\",\r\n\"volume\":2001,\r\n\"unit_measure_id\":124,\r\n\"price\":1001,\r\n\"price_with_markup\":1501,\r\n\"cost\":2000000,\r\n\"cost_with_markup\":3000000,\r\n\"markup\":50\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.gectaro.com/v1/tasks/1514161/resources/6988157?expand=contractor,commentsCount,newCommentsCount,unitMeasure",
+					"protocol": "https",
+					"host": [
+						"api",
+						"gectaro",
+						"com"
+					],
+					"path": [
+						"v1",
+						"tasks",
+						"1514161",
+						"resources",
+						"6988157"
+					],
+					"query": [
+						{
+							"key": "expand",
+							"value": "contractor,commentsCount,newCommentsCount,unitMeasure"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "30. Все разделы",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.get(\"variable_key\");\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "YFWmJBjZJhi8ZN5kMZV1XpqKoDIuv1dU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.gectaro.com/v1/projects/52473/stages",
+					"protocol": "https",
+					"host": [
+						"api",
+						"gectaro",
+						"com"
+					],
+					"path": [
+						"v1",
+						"projects",
+						"52473",
+						"stages"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "31. Создать новый раздел",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.get(\"variable_key\");\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "YFWmJBjZJhi8ZN5kMZV1XpqKoDIuv1dU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.gectaro.com/v1/projects/52473/stages",
+					"protocol": "https",
+					"host": [
+						"api",
+						"gectaro",
+						"com"
+					],
+					"path": [
+						"v1",
+						"projects",
+						"52473",
+						"stages"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "26 Создать работу в разделе",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.get(\"variable_key\");\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "YFWmJBjZJhi8ZN5kMZV1XpqKoDIuv1dU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"project_stage_id\":276952,\r\n\"name\":\"Работочки по демонтажику\",\r\n\"volume\":20,\r\n\"price\":2500\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.gectaro.com/v1/stages/276952/tasks?expand=contractor,removableResourceIds,isRemovable,resourceIds,resources,resources.contractor",
+					"protocol": "https",
+					"host": [
+						"api",
+						"gectaro",
+						"com"
+					],
+					"path": [
+						"v1",
+						"stages",
+						"276952",
+						"tasks"
+					],
+					"query": [
+						{
+							"key": "expand",
+							"value": "contractor,removableResourceIds,isRemovable,resourceIds,resources,resources.contractor"
+						},
+						{
+							"key": "limit",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "27. работа со всеми реквизитами количество и цена",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.get(\"variable_key\");\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "YFWmJBjZJhi8ZN5kMZV1XpqKoDIuv1dU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"project_stage_id\":276952,\r\n\"name\":\"Работочки по демонтажику\",\r\n\"volume\":20,\r\n\"price\":2500\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.gectaro.com/v1/stages/276952/tasks?expand=contractor,removableResourceIds,isRemovable,resourceIds,resources,resources.contractor",
+					"protocol": "https",
+					"host": [
+						"api",
+						"gectaro",
+						"com"
+					],
+					"path": [
+						"v1",
+						"stages",
+						"276952",
+						"tasks"
+					],
+					"query": [
+						{
+							"key": "expand",
+							"value": "contractor,removableResourceIds,isRemovable,resourceIds,resources,resources.contractor"
+						},
+						{
+							"key": "limit",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "28 Новая работа  количество, цена наценка",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.get(\"variable_key\");\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "YFWmJBjZJhi8ZN5kMZV1XpqKoDIuv1dU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"project_stage_id\":276952,\r\n    \"number\":7,\"new_number\":7,\r\n    \"name\":\"количество, цена, наценка\",\r\n     \"volume\":30,\r\n       \"price\":100,\r\n     \"markup\":50\r\n     }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.gectaro.com/v1/stages/276952/tasks?expand=contractor,removableResourceIds,isRemovable,resourceIds,resources,resources.contractor",
+					"protocol": "https",
+					"host": [
+						"api",
+						"gectaro",
+						"com"
+					],
+					"path": [
+						"v1",
+						"stages",
+						"276952",
+						"tasks"
+					],
+					"query": [
+						{
+							"key": "expand",
+							"value": "contractor,removableResourceIds,isRemovable,resourceIds,resources,resources.contractor"
+						},
+						{
+							"key": "limit",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "20. Частичное обновление не все обязательные поля",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.get(\"variable_key\");\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "YFWmJBjZJhi8ZN5kMZV1XpqKoDIuv1dU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"project_task_id\": 1514161,\r\n    \"type\": 1,\r\n    \"contractor_id\": 69119,\r\n    \"number\": 26,\r\n    \"volume\": 0,\r\n    \"write_off\": 0,\r\n    \"price\": 0,\r\n    \"cost\": 1500\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.gectaro.com/v1/tasks/1514161/resources/6974582?expand=contractor,commentsCount,newCommentsCount,unitMeasure",
+					"protocol": "https",
+					"host": [
+						"api",
+						"gectaro",
+						"com"
+					],
+					"path": [
+						"v1",
+						"tasks",
+						"1514161",
+						"resources",
+						"6974582"
+					],
+					"query": [
+						{
+							"key": "expand",
+							"value": "contractor,commentsCount,newCommentsCount,unitMeasure"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "19. Валидация полей (корректные и некорректные данные)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.get(\"variable_key\");\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "YFWmJBjZJhi8ZN5kMZV1XpqKoDIuv1dU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"id\":6988157,\r\n\"project_task_id\":1514161,\r\n\"project_id\":52473,\r\n\"type\":2,\r\n\"number\":36,\r\n\"name\":\"блоки снова изменились\",\r\n\"volume\":\"количество\",\r\n\"unit_measure_id\":124,\r\n\"price\":\"цена\",\r\n\"price_with_markup\":1501,\r\n\"cost\":2000000,\r\n\"cost_with_markup\":3000000,\r\n\"markup\":50\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.gectaro.com/v1/tasks/1514161/resources/6988157?expand=contractor,commentsCount,newCommentsCount,unitMeasure",
+					"protocol": "https",
+					"host": [
+						"api",
+						"gectaro",
+						"com"
+					],
+					"path": [
+						"v1",
+						"tasks",
+						"1514161",
+						"resources",
+						"6988157"
+					],
+					"query": [
+						{
+							"key": "expand",
+							"value": "contractor,commentsCount,newCommentsCount,unitMeasure"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "17. Обновление по несуществующему ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.get(\"variable_key\");\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "YFWmJBjZJhi8ZN5kMZV1XpqKoDIuv1dU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"id\":6988222,\r\n\"project_task_id\":1514161,\r\n\"project_id\":52473,\r\n\"type\":1,\r\n\"contractor_id\":69119,\r\n\"number\":19,\r\n\"volume\":40,\r\n\"unit_measure_id\":123,\r\n\"price\":2000,\r\n\"price_with_markup\":2400,\r\n\"cost\":80000,\r\n\"cost_with_markup\":96000,\r\n\"markup\":20\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.gectaro.com/v1/tasks/1514161/resources/6974222?expand=contractor,commentsCount,newCommentsCount,unitMeasure",
+					"protocol": "https",
+					"host": [
+						"api",
+						"gectaro",
+						"com"
+					],
+					"path": [
+						"v1",
+						"tasks",
+						"1514161",
+						"resources",
+						"6974222"
+					],
+					"query": [
+						{
+							"key": "expand",
+							"value": "contractor,commentsCount,newCommentsCount,unitMeasure"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "12.Вывод нескольких ресурсов на страницу  per-page",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "YFWmJBjZJhi8ZN5kMZV1XpqKoDIuv1dU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.gectaro.com/v1/tasks/1514161/resources?per-page=4",
+					"protocol": "https",
+					"host": [
+						"api",
+						"gectaro",
+						"com"
+					],
+					"path": [
+						"v1",
+						"tasks",
+						"1514161",
+						"resources"
+					],
+					"query": [
+						{
+							"key": "expand",
+							"value": "contractor,commentsCount,newCommentsCount,unitMeasure",
+							"disabled": true
+						},
+						{
+							"key": "per-page",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "18. Обновление по невалидному ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"id\":fignya,\r\n\"project_task_id\":1514161,\r\n\"project_id\":52473,\r\n\"type\":1,\r\n\"contractor_id\":69119,\r\n\"number\":19,\r\n\"volume\":40,\r\n\"unit_measure_id\":123,\r\n\"price\":2000,\r\n\"price_with_markup\":2400,\r\n\"cost\":80000,\r\n\"cost_with_markup\":96000,\r\n\"markup\":20\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.gectaro.com/v1/tasks/1514161/resources/fignya?expand=contractor,commentsCount,newCommentsCount,unitMeasure",
+					"protocol": "https",
+					"host": [
+						"api",
+						"gectaro",
+						"com"
+					],
+					"path": [
+						"v1",
+						"tasks",
+						"1514161",
+						"resources",
+						"fignya"
+					],
+					"query": [
+						{
+							"key": "expand",
+							"value": "contractor,commentsCount,newCommentsCount,unitMeasure"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
